@@ -1,0 +1,93 @@
+import random
+flights={
+    ("New York", "London", "Summer"): 1000,
+    ("New York", "London", "Winter"): 800,
+    ("Los Angeles", "Tokyo", "Summer"): 1500,
+    ("Los Angeles", "Tokyo", "Winter"): 1200,
+    ("Chicago", "Paris", "Summer"): 900,
+    ("Chicago", "Paris", "Winter"): 700,
+}
+def flight_fare_estimation():
+  origin, destination, season=random.choice(list(flights.keys()))
+  actual_fare=flights[(origin,destination,season)]
+  guess=int(input(f"How much do you think a flight from {origin} to {destination} in {season} costs?"))
+  difference=abs(guess-actual_fare)
+  if difference==0:
+    points=100
+  elif difference<=100:
+    points=75
+  elif difference<=200:
+    points=50
+  elif difference<=500:
+    points=25
+  else:
+    points=0
+
+  print(f"the actual fare for a flight from {origin} to {destination} in {season} is {actual_fare}.")
+  print(f"your guess was {guess}.")
+  print(f"you earned {points} points.\n")
+for i in range(3):
+  print(f"game {i+1}")
+  flight_fare_estimation()
+
+import random
+employees={
+    ("Software Enginner", "Level 1", "0-2 years"): 80000,
+    ("Software Enginner", "Level 2", "2-5 years"): 100000,
+    ("Software Enginner", "Level 3", "5+ years"): 120000,
+    ("Data Scientists", "Level 1", "0-2 years"): 90000,
+    ("Data Scientists", "Level 2", "2-5 years"): 110000,
+    ("Data Scientists", "Level 3", "5+ years"): 130000,
+}
+def employees_salary_estimation():
+  job_title, level, experience=random.choice(list(employees.keys()))
+  actual_salary=employees[(job_title,level,experience)]
+  guess=int(input(f"What do you think a {job_title} at {level} level with {experience} of experience earns? "))
+  difference=abs(guess-actual_salary)
+  if difference==0:
+    points=100
+  elif difference<=1000:
+    points=75
+  elif difference<=5000:
+    points=50
+  elif difference<=10000:
+    points=25
+  else:
+    points=0
+  print(f"the actual salary for a  {job_title} at {level} level with {experience} is {actual_salary}.")
+  print(f"your guess was {guess}.")
+  print(f"you earned {points} points.\n")
+for i in range(3):
+  print(f"game {i+1}")
+  employees_salary_estimation()
+
+
+import random
+products={
+    ("Samsung S21", "128GB", "Phantom Black"): 700,
+    ("Apple iphone 13", "256GB", "Midnight"): 1200,
+    ("Google Pixel 6", "128GB", "Stormy Black"): 900,
+    ("OnePlus 10", "256GB", "Medula Black"): 1000,
+    ("Xiaomi Mi 12", "256GB", "Cosmic Gary"): 800,
+}
+def product_value_estimation():
+  product, actual_value=random.choice(list(products.items()))
+  product_name, product_specs_1, product_specs_2=product
+  guess=int(input(f"What do you think a {product_name} with {product_specs_1},{product_specs_2} is worth in the market?"))
+  difference=abs(guess-actual_value)
+  if difference==0:
+    points=100
+  elif difference<=1000:
+    points=75
+  elif difference<=5000:
+    points=50
+  elif difference<=10000:
+    points=25
+  else:
+    points=0
+  print(f"the actual value of a  {product_name} at with {product_specs_1},{product_specs_2} is {actual_value}.")
+  print(f"your guess was {guess}.")
+  print(f"you earned {points} points.\n")
+for i in range(3):
+  print(f"game {i+1}")
+  product_value_estimation()
