@@ -1,0 +1,37 @@
+import random
+
+class BayesianGame:
+    def __init__(self, p_honest):
+        self.p_honest = p_honest
+
+    def player_action(self, belief):
+        return "cooperate" if random.random() < belief else "defect"
+
+    def update_belief(self, belief, action):
+        if action == "cooperate":
+            return belief * self.p_honest / (belief * self.p_honest + (1 - belief) * (1 - self.p_honest))
+        else:
+            return belief * (1 - self.p_honest) / (belief * (1 - self.p_honest) + (1 - belief) * self.p_honest)
+
+# Parameters
+p_honest = 0.8
+
+# Initialize the game
+game = BayesianGame(p_honest)
+
+# Initial beliefs
+belief_player1 = 0.5
+belief_player2 = 0.5
+
+# Play one round
+action_player1 = game.player_action(belief_player1)
+action_player2 = game.player_action(belief_player2)
+
+# Update beliefs
+belief_player1 = game.update_belief(belief_player1, action_player2)
+belief_player2 = game.update_belief(belief_player2, action_player1)
+
+print("Player 1 action:", action_player1)
+print("Player 2 action:", action_player2)
+print("Player 1 belief about player 2's type:", belief_player1)
+print("Player 2 belief about player 1's type:", belief_player2)
