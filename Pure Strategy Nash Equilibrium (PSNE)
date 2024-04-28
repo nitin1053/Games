@@ -1,0 +1,34 @@
+import random
+
+class PrisonersDilemma:
+    def __init__(self):
+        self.payoff_matrix = {
+            ("cooperate", "cooperate"): (3, 3),
+            ("cooperate", "defect"): (0, 5),
+            ("defect", "cooperate"): (5, 0),
+            ("defect", "defect"): (1, 1)
+        }
+    
+    def play_round(self, action1, action2):
+        return self.payoff_matrix[(action1, action2)]
+
+    def incentivize_cooperation(self, rounds):
+        player1_score = 0
+        player2_score = 0
+        for _ in range(rounds):
+            action_player1 = "cooperate"
+            action_player2 = "cooperate"
+            if random.random() < 0.5:  # Randomly choose to defect with 50% probability
+                action_player1 = "defect"
+            if random.random() < 0.5:  # Randomly choose to defect with 50% probability
+                action_player2 = "defect"
+            payoff_player1, payoff_player2 = self.play_round(action_player1, action_player2)
+            player1_score += payoff_player1
+            player2_score += payoff_player2
+        return player1_score, player2_score
+
+# Example usage:
+game = PrisonersDilemma()
+player1_score, player2_score = game.incentivize_cooperation(1000)
+print("Player 1 total score:", player1_score)
+print("Player 2 total score:", player2_score)
