@@ -1,0 +1,24 @@
+import random
+
+def prisoners_dilemma(player1_choice, player2_choice):
+    if player1_choice == "cooperate":
+        if player2_choice == "cooperate":
+            return (3, 3)  # Both players cooperate, both receive a moderate payoff
+        elif player2_choice == "defect":
+            return (0, 5)  # Player 1 cooperates, player 2 defects, player 1 gets nothing, player 2 gets a high payoff
+    elif player1_choice == "defect":
+        if player2_choice == "cooperate":
+            return (5, 0)  # Player 1 defects, player 2 cooperates, player 1 gets a high payoff, player 2 gets nothing
+        elif player2_choice == "defect":
+            return (1, 1)  # Both players defect, both receive a lower payoff than if they had cooperated
+
+def play_round():
+    player1_choice = input("Player 1: Cooperate or Defect? ").lower()
+    player2_choice = random.choice(["cooperate", "defect"])
+    print("Player 2:", player2_choice)
+    
+    payoffs = prisoners_dilemma(player1_choice, player2_choice)
+    print("Payoffs:", payoffs)
+
+# Example usage:
+play_round()
