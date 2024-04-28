@@ -1,0 +1,19 @@
+# Lab4
+import numpy as np
+import nashpy as nash
+
+# Define the payoff matrices for the two players
+payoff_matrix_player1 = np.array([[3, 0], [5, 1]])
+payoff_matrix_player2 = np.array([[3, 5], [0, 1]])
+
+# Create the game
+game = nash.Game(payoff_matrix_player1, payoff_matrix_player2)
+
+# Calculate the mixed strategy Nash equilibrium
+mixed_strategy_equilibria = game.support_enumeration()
+
+print("Mixed Strategy Nash Equilibrium:")
+for eq in mixed_strategy_equilibria:
+    print("Player 1 Strategy:", eq[0])
+    print("Player 2 Strategy:", eq[1])
+    print()
