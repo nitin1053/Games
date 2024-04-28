@@ -32,3 +32,37 @@ game = PrisonersDilemma()
 player1_score, player2_score = game.incentivize_cooperation(1000)
 print("Player 1 total score:", player1_score)
 print("Player 2 total score:", player2_score)
+
+
+#2 way
+# Payoff matrix
+payoff_matrix = {
+    ('C', 'C'): (3, 3),  # Both cooperate
+    ('C', 'D'): (0, 5),  # Player 1 cooperates, Player 2 defects
+    ('D', 'C'): (5, 0),  # Player 1 defects, Player 2 cooperates
+    ('D', 'D'): (1, 1)   # Both defect
+}
+
+# Define strategies
+strategies = {
+    'C': 'Cooperate',
+    'D': 'Defect'
+}
+
+# Function to find Nash equilibrium
+def find_nash_equilibrium(payoff_matrix):
+    nash_equilibrium = []
+
+    for strategy_p1 in strategies:
+        for strategy_p2 in strategies:
+            if (payoff_matrix[(strategy_p1, strategy_p2)] >= payoff_matrix[(strategy_p1, strategies[strategy_p2])] and
+                payoff_matrix[(strategy_p1, strategy_p2)] >= payoff_matrix[(strategies[strategy_p1], strategy_p2)]):
+                nash_equilibrium.append((strategy_p1, strategy_p2))
+
+    return nash_equilibrium
+
+# Print Nash equilibrium
+nash_equilibrium = find_nash_equilibrium(payoff_matrix)
+print("Pure Strategy Nash Equilibrium(s):")
+for equilibrium in nash_equilibrium:
+    print("Player 1:", strategies[equilibrium[0]], "| Player 2:", strategies[equilibrium[1]])
