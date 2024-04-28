@@ -1,0 +1,32 @@
+def majority_rule(votes):
+    """
+    Implement the majority rule social choice function.
+
+    Parameters:
+    votes (list): List of votes, where each element represents an individual's choice.
+
+    Returns:
+    str or None: The winning option, or None if there's a tie.
+    """
+    vote_counts = {}
+    for vote in votes:
+        if vote in vote_counts:
+            vote_counts[vote] += 1
+        else:
+            vote_counts[vote] = 1
+    
+    max_count = max(vote_counts.values())
+    winners = [option for option, count in vote_counts.items() if count == max_count]
+
+    if len(winners) == 1:
+        return winners[0]  # Return the winning option
+    else:
+        return None  # Return None if there's a tie
+
+# Example usage:
+votes = ["A", "B", "A", "C", "B", "A", "B"]
+winner = majority_rule(votes)
+if winner:
+    print("The winning option is:", winner)
+else:
+    print("There is a tie.")
